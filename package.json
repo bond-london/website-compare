@@ -1,9 +1,13 @@
 {
-  "name": "website-compare",
-  "version": "1.0.0",
+  "name": "@bond-london/website-compare",
+  "version": "1.0.3",
   "description": "Compare a website visually",
   "author": "Nick Randell <nick.randell@bond.fi>",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "source": "src/screenshot.ts",
   "main": "dist/website-compare.js",
   "bin": {
@@ -14,6 +18,10 @@
     "watch": "parcel watch",
     "build": "parcel build"
   },
+  "files": [
+    "dist",
+    "bin"
+  ],
   "dependencies": {
     "apify": "^2.3.2",
     "command-line-args": "^5.2.1",

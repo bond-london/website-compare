@@ -3,6 +3,7 @@ import {
   openKeyValueStore,
   openRequestQueue,
   PseudoUrl,
+  utils,
 } from "apify";
 import { extractUrlsFromCheerio } from "apify/build/enqueue_links/enqueue_links";
 import commandLineArgs, { OptionDefinition } from "command-line-args";
@@ -29,7 +30,7 @@ async function crawlSite(args: {
   allImages?: boolean;
   totalPages?: number;
 }) {
-  console.log(args);
+  utils.log.setLevel(utils.log.LEVELS.OFF);
   const { url, directory, allImages, totalPages } = args;
   await mkdir(directory, { recursive: true });
 
@@ -123,7 +124,7 @@ async function crawlSite(args: {
       const urls = extractUrlsFromCheerio(args.$, "a", args.request.loadedUrl);
       for (const found of urls) {
         if (purl.matches(found)) {
-          if (!totalPages || count < totalPages) {
+          if (!totalPages || count < totalPages - 1) {
             const result = await requestQueue.addRequest({ url: found });
             if (!result.wasAlreadyPresent) {
               count++;
@@ -180,7 +181,12 @@ if (!url || !directory) {
   console.log(usage);
   exit(-1);
 }
-crawlSite({ url: options["url"], directory: options["output"] })
+crawlSite({
+  url: options["url"],
+  directory: options["output"],
+  allImages: options["allImages"],
+  totalPages: options["totalPages"],
+})
   .then(() => {
     console.log("Compelted ok");
   })

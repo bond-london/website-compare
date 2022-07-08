@@ -3,4 +3,4 @@
 "use strict";
 
 process.title = "Website Compare";
-require("../dist/screenshot");
+require("../dist/website-compare");
