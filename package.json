@@ -1,0 +1,31 @@
+{
+  "name": "website-compare",
+  "version": "1.0.0",
+  "description": "Compare a website visually",
+  "author": "Nick Randell <nick.randell@bond.fi>",
+  "license": "MIT",
+  "source": "src/screenshot.ts",
+  "main": "dist/website-compare.js",
+  "bin": {
+    "website-compare": "bin/website-compare.js"
+  },
+  "scripts": {
+    "go": "ts-node src/screenshot.ts",
+    "watch": "parcel watch",
+    "build": "parcel build"
+  },
+  "dependencies": {
+    "apify": "^2.3.2",
+    "command-line-args": "^5.2.1",
+    "command-line-usage": "^6.1.3",
+    "puppeteer": "^15.3.1"
+  },
+  "devDependencies": {
+    "@types/command-line-args": "^5.2.0",
+    "@types/command-line-usage": "^5.0.2",
+    "@types/node": "^18.0.3",
+    "parcel": "^2.6.2",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.7.4"
+  }
+}
