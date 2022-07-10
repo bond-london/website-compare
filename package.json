@@ -15,6 +15,7 @@
   },
   "scripts": {
     "go": "ts-node src/screenshot.ts",
+    "go-multi": "ts-node src/multi.ts",
     "watch": "parcel watch",
     "build": "parcel build"
   },
