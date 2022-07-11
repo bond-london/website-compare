@@ -1,0 +1,17 @@
+{
+  "paths": [
+    "/",
+    "/product/",
+    "/impact-report/",
+    "/blog/the-complete-guide-to-coffee-shop-profit-margins-and-how-to-raise-them/"
+  ],
+  "output": "d:/temp/bwtest/",
+  "urls": [
+    {
+      "url": "https://bellwethercoffee.com",
+      "name": "prod"
+    },
+    { "url": "https://bellwetherwebsitedev.gatsbyjs.io", "name": "dev" }
+  ],
+  "widths": [375, 768, 1024, 1440, 1920]
+}
