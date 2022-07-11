@@ -1,6 +1,6 @@
 {
   "name": "@bond-london/website-compare",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Compare a website visually",
   "author": "Nick Randell <nick.randell@bond.fi>",
   "license": "MIT",
