@@ -9,9 +9,10 @@
     "registry": "https://registry.npmjs.org/"
   },
   "source": "src/screenshot.ts",
-  "main": "dist/website-compare.js",
+  "distDir": "dist",
   "bin": {
-    "website-compare": "bin/website-compare.js"
+    "website-compare": "bin/website-compare.js",
+    "website-screenshot": "bin/website-screenshot.js"
   },
   "scripts": {
     "go": "ts-node src/screenshot.ts",
