@@ -4,7 +4,7 @@ import commandLineUsage from "command-line-usage";
 import { crawlSite, defaultOptions, Options } from "./crawler";
 
 const optionDefinitions: OptionDefinition[] = [
-  { name: "url", type: String, multiple: true },
+  { name: "urls", type: String, multiple: true },
   { name: "output", type: String },
   { name: "allImages", type: Boolean, defaultValue: defaultOptions.allImages },
   { name: "totalPages", type: Number, defaultValue: defaultOptions.totalPages },
