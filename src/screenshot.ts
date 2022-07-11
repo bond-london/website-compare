@@ -52,3 +52,5 @@ export function doScreenshot() {
       console.error("Failed", error);
     });
 }
+
+doScreenshot();

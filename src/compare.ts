@@ -55,3 +55,5 @@ export function doCompare() {
     .then(() => console.log("finished"))
     .catch(console.error);
 }
+
+doCompare();

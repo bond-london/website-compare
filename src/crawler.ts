@@ -68,12 +68,23 @@ export async function crawlSite(args: Options) {
         if (!allImages) {
           await page.setRequestInterception(true);
           page.on("request", (req) => {
-            if (req.resourceType() === "image") {
+            const url = req.url().toLowerCase();
+            const resourceType = req.resourceType();
+            if (resourceType === "image") {
               req.respond({
                 status: 200,
                 contentType: "image/png",
                 body: blankBuffer,
               });
+            } else if (
+              resourceType == "media" ||
+              url.endsWith(".mp4") ||
+              url.endsWith(".avi") ||
+              url.endsWith(".flv") ||
+              url.endsWith(".mov") ||
+              url.endsWith(".mov")
+            ) {
+              req.abort();
             } else {
               req.continue();
             }

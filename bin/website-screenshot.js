@@ -3,5 +3,4 @@
 "use strict";
 
 process.title = "Website Screenshot";
-const { doScreenshot } = require("../dist/screenshot");
-doScreenshot();
+require("../dist/screenshot");
