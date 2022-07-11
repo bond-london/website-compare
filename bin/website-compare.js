@@ -3,5 +3,5 @@
 "use strict";
 
 process.title = "Website Compare";
-const { doCompare } = require("../dist/website-compare");
+const { doCompare } = require("../dist/compare");
 doCompare();
