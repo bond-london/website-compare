@@ -1,6 +1,6 @@
 {
   "name": "@bond-london/website-compare",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Compare a website visually",
   "author": "Nick Randell <nick.randell@bond.fi>",
   "license": "MIT",
@@ -8,8 +8,8 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "source": "src/screenshot.ts",
-  "distDir": "dist",
+  "source": "src/wrapper.ts",
+  "main": "dist/website-compare.js",
   "bin": {
     "website-compare": "bin/website-compare.js",
     "website-screenshot": "bin/website-screenshot.js"
