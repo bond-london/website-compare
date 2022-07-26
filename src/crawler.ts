@@ -43,8 +43,9 @@ export async function crawlSite(args: Options) {
 
   let count = 0;
 
+  // blank image from https://onlinepngtools.com/generate-1x1-png
   const blankImage =
-    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg==";
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj+P///38ACfsD/QVDRcoAAAAASUVORK5CYII=";
   const blankBuffer = Buffer.from(blankImage, "base64");
 
   const crawler = new CheerioCrawler({
