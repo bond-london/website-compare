@@ -48,7 +48,10 @@ export async function crawlSite(args: Options) {
     "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj+P///38ACfsD/QVDRcoAAAAASUVORK5CYII=";
   const blackImage =
     "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjYGBg+A8AAQQBAHAgZQsAAAAASUVORK5CYII=";
-  const blankImage = blackImage;
+  const transparentImage =
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUGFdjYAACAAAFAAGq1chRAAAAAElFTkSuQmCC";
+
+  const blankImage = transparentImage;
   const blankBuffer = Buffer.from(blankImage, "base64");
 
   const crawler = new CheerioCrawler({
@@ -99,6 +102,7 @@ export async function crawlSite(args: Options) {
         await page.goto(args.request.loadedUrl, {
           waitUntil: "networkidle2",
         });
+
         if (allImages) {
           let previousOffset = 0;
           const pageHeight = await page.evaluate(
