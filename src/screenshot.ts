@@ -46,7 +46,7 @@ export function doScreenshot() {
   }
   crawlSite(options as Options)
     .then(() => {
-      console.log("Compelted ok");
+      console.log("Completed ok");
     })
     .catch((error) => {
       console.error("Failed", error);
