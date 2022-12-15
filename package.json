@@ -13,6 +13,7 @@
     "website-screenshot": "bin/website-screenshot.js"
   },
   "scripts": {
+    "go-compare": "ts-node src/compare.ts",
     "go": "ts-node src/screenshot.ts",
     "go-multi": "ts-node src/multi.ts --input ../multi.json",
     "prewatch": "rimraf dist",

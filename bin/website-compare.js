@@ -2,5 +2,7 @@
 
 "use strict";
 
+const { resolve } = require("path");
+
 process.title = "Website Compare";
-require("../dist/compare");
+require(resolve("../dist/compare"));

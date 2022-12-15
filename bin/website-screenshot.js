@@ -3,4 +3,4 @@
 "use strict";
 
 process.title = "Website Screenshot";
-require("../dist/screenshot");
+require(resolve("../dist/screenshot"));
