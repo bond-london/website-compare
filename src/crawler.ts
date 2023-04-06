@@ -60,7 +60,9 @@ export async function crawlSite(args: Options) {
       console.log(`Got ${args.request.url} (${args.request.loadedUrl})`);
       const info = new URL(args.request.loadedUrl);
       const purl = new PseudoUrl(info.origin + "[/.*$]");
-      const path = info.pathname.slice(0, -1);
+      const path = info.pathname.endsWith("/")
+        ? info.pathname.slice(0, -1)
+        : info.pathname;
       const screenshotName = join(
         output,
         (path.length === 0 ? "index" : path) + ".png"
