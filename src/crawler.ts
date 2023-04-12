@@ -1,11 +1,11 @@
 import {
   CheerioCrawler,
-  openKeyValueStore,
-  openRequestQueue,
+  KeyValueStore,
   PseudoUrl,
+  RequestQueue,
   utils,
-} from "apify";
-import { extractUrlsFromCheerio } from "apify/build/enqueue_links/enqueue_links";
+  extractUrls,
+} from "crawlee";
 import { mkdir } from "fs/promises";
 import { dirname, join } from "path";
 import { launch, Viewport } from "puppeteer";
@@ -29,13 +29,13 @@ export async function crawlSite(args: Options) {
   const viewport = rest as Viewport;
   await mkdir(output, { recursive: true });
 
-  const oldKvs = await openKeyValueStore();
+  const oldKvs = await KeyValueStore.open();
   await oldKvs.drop();
 
-  const oldRequestQueue = await openRequestQueue();
+  const oldRequestQueue = await RequestQueue.open();
   await oldRequestQueue.drop();
 
-  const requestQueue = await openRequestQueue();
+  const requestQueue = await RequestQueue.open();
   for (const url of urls) {
     await requestQueue.addRequest({ url });
   }
@@ -58,7 +58,7 @@ export async function crawlSite(args: Options) {
     requestQueue,
     handlePageFunction: async (args) => {
       console.log(`Got ${args.request.url} (${args.request.loadedUrl})`);
-      const info = new URL(args.request.loadedUrl);
+      const info = new URL(args.request.loadedUrl || "");
       const purl = new PseudoUrl(info.origin + "[/.*$]");
       const path = info.pathname.endsWith("/")
         ? info.pathname.slice(0, -1)
@@ -101,7 +101,7 @@ export async function crawlSite(args: Options) {
         }
         await page.setViewport(viewport);
         await page.setJavaScriptEnabled(false);
-        await page.goto(args.request.loadedUrl, {
+        await page.goto(args.request.loadedUrl || "", {
           waitUntil: "networkidle2",
         });
 
@@ -136,11 +136,11 @@ export async function crawlSite(args: Options) {
       }
 
       if (totalPages !== 0) {
-        const urls = extractUrlsFromCheerio(
-          args.$,
-          "a",
-          args.request.loadedUrl
-        );
+        const urls: Array<string> = [];
+        args.$("a").each((i, el) => {
+          urls.push(args.$(el).attr("href") as string);
+        });
+
         for (const found of urls) {
           if (purl.matches(found)) {
             if (totalPages === -1 || count < totalPages - 1) {
