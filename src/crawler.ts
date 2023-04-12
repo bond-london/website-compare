@@ -142,9 +142,12 @@ export async function crawlSite(args: Options) {
         });
 
         for (const found of urls) {
-          if (purl.matches(found)) {
+          const urlToCheck = found.startsWith("/")
+            ? info.origin + found
+            : found;
+          if (purl.matches(urlToCheck)) {
             if (totalPages === -1 || count < totalPages - 1) {
-              const result = await requestQueue.addRequest({ url: found });
+              const result = await requestQueue.addRequest({ url: urlToCheck });
               if (!result.wasAlreadyPresent) {
                 count++;
               }
